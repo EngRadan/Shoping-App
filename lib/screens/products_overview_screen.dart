@@ -5,16 +5,19 @@ import '../providers/cart.dart';
 import '../widgets/products_grid.dart';
 import '../widgets/badge.dart';
 import '../screens/cart_screen.dart';
+import '../widgets/app_drawer.dart';
 
 enum FilterOptions { Favorites, All }
 
 // ignore: use_key_in_widget_constructors
 class ProductsOverviewScreen extends StatefulWidget {
   @override
-  State<ProductsOverviewScreen> createState() => _ProductsOverviewScreenState();
+  State<ProductsOverviewScreen> createState() =>
+      _ProductsOverviewScreenState();
 }
 
-class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
+class _ProductsOverviewScreenState
+    extends State<ProductsOverviewScreen> {
   var _showFavoritesOnly = false;
   @override
   Widget build(BuildContext context) {
@@ -41,13 +44,16 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
                 child: Text('Only Favorites'),
                 value: FilterOptions.Favorites,
               ),
-              PopupMenuItem(child: Text('Show All'), value: FilterOptions.All),
+              PopupMenuItem(
+                child: Text('Show All'),
+                value: FilterOptions.All,
+              ),
             ],
           ),
           Consumer<Cart>(
             builder: (_, cart, ch) => Badge(
               // ignore: sort_child_properties_last
-              child: ch as Widget,
+              child: ch!,
               value: cart.itemCount.toString(),
             ),
             child: IconButton(
@@ -59,6 +65,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           ),
         ],
       ),
+      drawer: AppDrawer(),
       body: ProductsGrid(_showFavoritesOnly),
     );
   }
