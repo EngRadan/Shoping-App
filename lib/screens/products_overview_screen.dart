@@ -12,12 +12,10 @@ enum FilterOptions { Favorites, All }
 // ignore: use_key_in_widget_constructors
 class ProductsOverviewScreen extends StatefulWidget {
   @override
-  State<ProductsOverviewScreen> createState() =>
-      _ProductsOverviewScreenState();
+  State<ProductsOverviewScreen> createState() => _ProductsOverviewScreenState();
 }
 
-class _ProductsOverviewScreenState
-    extends State<ProductsOverviewScreen> {
+class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   var _showFavoritesOnly = false;
   @override
   Widget build(BuildContext context) {
@@ -44,10 +42,7 @@ class _ProductsOverviewScreenState
                 child: Text('Only Favorites'),
                 value: FilterOptions.Favorites,
               ),
-              PopupMenuItem(
-                child: Text('Show All'),
-                value: FilterOptions.All,
-              ),
+              PopupMenuItem(child: Text('Show All'), value: FilterOptions.All),
             ],
           ),
           Consumer<Cart>(
